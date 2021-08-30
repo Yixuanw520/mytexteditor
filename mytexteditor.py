@@ -19,6 +19,9 @@ from tkinter import font
 def newfile():
     messagebox.showinfo("File", "New File")
 
+def font():
+    messagebox.showinfo("Font", "")
+
 def countlines(event):
     (line, c) = map(int, event.widget.index("end-1c").split("."))
     # print(line, c)
@@ -42,6 +45,12 @@ def copy():
 def paste():
     str_status = var.get()
     status_text2 = ' '*5+"paste."
+    var.set(status_text1 + status_text2)
+    status_text2 = ''
+
+def font():
+    str_status = var.get()
+    status_text2 = ' '*5+"Arial."
     var.set(status_text1 + status_text2)
     status_text2 = ''
 
@@ -96,13 +105,15 @@ btn3.pack(side=LEFT)
 size = 12  # default size
 size_var = IntVar()
 size_var.set(size)
-size_label = Label(frame_toolbar, textvariable=size_var, bg="linen")  # font size label
+size_label = Label(frame_toolbar, textvariable=size_var)  # font size label
 add_size = Button(frame_toolbar, text="+", width=7, font=(None, 8))  # add size button
 sub_size = Button(frame_toolbar, text="-", width=7, font=(None, 8))  # sub size button
 add_size.pack(side=LEFT, padx=5)  # first pack + button
 size_label.pack(side=LEFT, padx=5)  # second pack label showing current size
 sub_size.pack(side=LEFT, padx=5)  # finally pack - button
 
+btn3 = Button(frame_toolbar, text="Arial", command=font)
+btn3.pack(side=LEFT, padx=5)
 
 # text widget
 text = Text(root, height=5, width=30)
